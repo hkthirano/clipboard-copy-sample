@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Clipboard} from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'clipboard-copy-sample';
+  constructor(private clipboard: Clipboard) {}
+
+  onClickTextCopy() {
+    this.clipboard.copy('https://sample1.com');
+  }
 }
