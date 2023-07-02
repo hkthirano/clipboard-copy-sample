@@ -5,60 +5,75 @@
     >Angular Clipboard でTextをCopy</a
   >
   <button (click)="onClickTextCopy()">Copy</button>
+  <br />
+  <span>Paste先の確認</span>
   <table border="1">
     <tr>
-      <th>Copy元ブラウザ</th>
-      <th>Paste先アプリ</th>
+      <th>Copy元ブラウザ (OS)</th>
+      <th>Paste先アプリ (OS / 実行場所 / 型番)</th>
       <th>Copy結果</th>
       <th>Paste結果</th>
     </tr>
-    <!-- Paste先の確認 -->
     <tr>
-      <td>WindowsOS chrome</td>
-      <td>WindowsOS MS365 PowerPoint(デスクトップアプリ)</td>
+      <td>chrome (WindowsOS)</td>
+      <td>PowerPoint (WindowsOS / デスクトップ / MS365ForAppsEnterprise)</td>
       <td>O</td>
       <td>O</td>
     </tr>
     <tr>
-      <td>WindowsOS chrome</td>
-      <td>WindowsOS chrome PowerPoint(ブラウザアプリ)</td>
+      <td>chrome (WindowsOS)</td>
+      <td>PowerPoint (WindowsOS / chrome / -)</td>
       <td>O</td>
       <td>O</td>
     </tr>
     <tr>
-      <td>WindowsOS chrome</td>
-      <td>WindowsOS Slack(デスクトップアプリ)</td>
+      <td>chrome (MacOS)</td>
+      <td>PowerPoint (MacOS / デスクトップ / MSPowerPointForMac)</td>
       <td>O</td>
       <td>O</td>
     </tr>
     <tr>
-      <td>WindowsOS chrome</td>
-      <td>WindowsOS chrome Slack(ブラウザアプリ)</td>
+      <td>chrome (WindowsOS)</td>
+      <td>Slack (WindowsOS / デスクトップ / -)</td>
       <td>O</td>
       <td>O</td>
     </tr>
     <tr>
-      <td>WindowsOS chrome</td>
-      <td>WindowsOS chrome GoogleSlide(ブラウザアプリ)</td>
-      <td>O</td>
-      <td>O</td>
-    </tr>
-    <!-- コピー元の確認 -->
-    <tr>
-      <td>WindowsOS edge</td>
-      <td>WindowsOS chrome GoogleSlide(ブラウザアプリ)</td>
+      <td>chrome (WindowsOS)</td>
+      <td>Slack (WindowsOS / chrome / -)</td>
       <td>O</td>
       <td>O</td>
     </tr>
     <tr>
-      <td>WindowsOS firefox</td>
-      <td>WindowsOS chrome GoogleSlide(ブラウザアプリ)</td>
+      <td>chrome (WindowsOS)</td>
+      <td>GoogleSlide (WindowsOS / chrome / -)</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+  </table>
+  <span>Copy元の確認</span>
+  <table border="1">
+    <tr>
+      <th>Copy元ブラウザ (OS)</th>
+      <th>Paste先アプリ (OS / 実行場所 / 型番)</th>
+      <th>Copy結果</th>
+      <th>Paste結果</th>
+    </tr>
+    <tr>
+      <td>edge (WindowsOS)</td>
+      <td>GoogleSlide (WindowsOS / chrome / -)</td>
       <td>O</td>
       <td>O</td>
     </tr>
     <tr>
-      <td>MacOS safari</td>
-      <td>MacOS safari GoogleSlide(ブラウザアプリ)</td>
+      <td>firefox (WindowsOS)</td>
+      <td>GoogleSlide (WindowsOS / chrome / -)</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <td>safari (MacOS)</td>
+      <td>GoogleSlide (MacOS / chrome / -)</td>
       <td>O</td>
       <td>O</td>
     </tr>
