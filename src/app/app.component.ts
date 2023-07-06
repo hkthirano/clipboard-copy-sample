@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {
+  getBlobFromImageElement,
+  copyBlobToClipboard,
+} from 'copy-image-clipboard';
 
 @Component({
   selector: 'app-root',
@@ -28,5 +32,16 @@ export class AppComponent {
       await navigator.clipboard.write([item]);
       window.alert('copied!');
     });
+  }
+
+  async onClickImageCopy2() {
+    const imageElement = document.getElementById('lenna') as HTMLImageElement;
+    getBlobFromImageElement(imageElement)
+      .then((blob) => {
+        return copyBlobToClipboard(blob);
+      })
+      .then(() => {
+        window.alert('copied!');
+      });
   }
 }
