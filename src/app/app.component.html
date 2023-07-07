@@ -3,6 +3,7 @@
   <a href="https://developer.mozilla.org/ja/docs/Web/API/Clipboard/writeText"
     >方法1: Clipboard.writeText()</a
   >
+  <span>全ブラウザOK</span>
   <button (click)="onClickTextCopy1()">現在時刻をCopy</button>
 </div>
 
@@ -13,15 +14,17 @@
 <img id="lenna" width="200" src="/assets/lenna.png" />
 
 <div>
-  <a href="https://material.angular.io/cdk/clipboard/overview"
-    >方法1: ClipboardItem()とClipboard.write()</a
+  <a href="https://developer.mozilla.org/ja/docs/Web/API/Clipboard/write"
+    >方法1: Clipboard.write()</a
   >
+  <span>Safari以外OK</span>
   <button (click)="onClickImageCopy1()">画像をCopy</button>
 </div>
 
 <div>
-  <a href="https://www.npmjs.com/package/copy-image-clipboard"
-    >方法2: copy-image-clipboard</a
+  <a href="https://web.dev/i18n/ja/async-clipboard/#write"
+    >方法2: Clipboard.write()</a
   >
+  <span>Firefox以外OK</span>
   <button (click)="onClickImageCopy2()">画像をCopy</button>
 </div>

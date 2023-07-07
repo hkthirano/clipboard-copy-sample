@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  getBlobFromImageElement,
-  copyBlobToClipboard,
-} from 'copy-image-clipboard';
 
 @Component({
   selector: 'app-root',
@@ -12,36 +8,63 @@ import {
 export class AppComponent {
   constructor() {}
 
+  /*
+  textコピーは、AngularMaterialのCDKにもある。
+  ただし、内部ではブラウザ非推奨のAPI document.execCommand('copy') を使っている。
+  https://github.com/angular/components/blob/main/src/cdk/clipboard/pending-copy.ts
+  */
   async onClickTextCopy1() {
-    await navigator.clipboard.writeText(new Date().toString());
-    window.alert('copied!');
-  }
-
-  async onClickImageCopy1() {
-    const img = document.getElementById('lenna') as HTMLImageElement;
-    const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext('2d');
-    ctx?.drawImage(img, 0, 0);
-
-    canvas.toBlob(async (blob) => {
-      const item = new ClipboardItem({
-        'image/png': blob!,
-      });
-      await navigator.clipboard.write([item]);
+    try {
+      await navigator.clipboard.writeText(new Date().toString());
       window.alert('copied!');
-    });
+    } catch (err) {
+      window.alert(err);
+    }
   }
 
-  async onClickImageCopy2() {
-    const imageElement = document.getElementById('lenna') as HTMLImageElement;
-    getBlobFromImageElement(imageElement)
-      .then((blob) => {
-        return copyBlobToClipboard(blob);
-      })
-      .then(() => {
+  // Safariでは動かない
+  async onClickImageCopy1() {
+    try {
+      const img = document.getElementById('lenna') as HTMLImageElement;
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx?.drawImage(img, 0, 0);
+
+      canvas.toBlob(async (blob) => {
+        const item = new ClipboardItem({
+          'image/png': blob!,
+        });
+        await navigator.clipboard.write([item]);
         window.alert('copied!');
       });
+    } catch (err) {
+      window.alert(err);
+    }
+  }
+
+  // Safariでは動くが、なぜかFirefoxでは動かない
+  async onClickImageCopy2() {
+    try {
+      const img = document.getElementById('lenna') as HTMLImageElement;
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx?.drawImage(img, 0, 0);
+
+      const makeImagePromise = async () => {
+        return new Promise<Blob>((resolve) =>
+          canvas.toBlob((blob) => resolve(blob!))
+        );
+      };
+      await navigator.clipboard.write([
+        new ClipboardItem({ ['image/png']: makeImagePromise() }),
+      ]);
+      window.alert('copied!');
+    } catch (err) {
+      window.alert(err);
+    }
   }
 }
