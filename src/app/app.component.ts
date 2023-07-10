@@ -88,7 +88,7 @@ export class AppComponent {
       const imageData = await fetch(imageUrl);
       const imageBlob = await imageData.blob();
       const imageBase64Data = await this.blobToBase64(imageBlob);
-      const html = `<div style="font-size: 18px; width: 200px; color: red;">${new Date().toString()}</div><div><img width="200" height="200" src="${imageBase64Data}" /></div>`;
+      const html = `<a href="https://test.com">text1234567890text1234567890text1234567890</a><div><img width="200" height="200" src="${imageBase64Data}" /></div>`;
 
       const textBlob = new Blob([html], {
         type: 'text/html',
