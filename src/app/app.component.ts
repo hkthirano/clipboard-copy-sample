@@ -67,4 +67,48 @@ export class AppComponent {
       window.alert(err);
     }
   }
+
+  async onClickLinkedTextCopy1() {
+    try {
+      const html = `<a href="http://test.com">${new Date().toString()}</a>`;
+      const item = new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+      });
+      await navigator.clipboard.write([item]);
+      window.alert('copied!');
+    } catch (err) {
+      window.alert(err);
+    }
+  }
+
+  async onClickImageAndTextCopy1() {
+    const imageUrl =
+      'https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png';
+    try {
+      const imageData = await fetch(imageUrl);
+      const imageBlob = await imageData.blob();
+      const imageBase64Data = await this.blobToBase64(imageBlob);
+      const html = `<div style="font-size: 18px; width: 200px; color: red;">${new Date().toString()}</div><div><img width="200" height="200" src="${imageBase64Data}" /></div>`;
+
+      const textBlob = new Blob([html], {
+        type: 'text/html',
+      });
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          [textBlob.type]: textBlob,
+        }),
+      ]);
+      window.alert('copied!');
+    } catch (err) {
+      window.alert(err);
+    }
+  }
+
+  blobToBase64(blob: Blob) {
+    return new Promise((resolve, _) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  }
 }
