@@ -111,4 +111,20 @@ export class AppComponent {
       reader.readAsDataURL(blob);
     });
   }
+
+  // https://www.seeds-std.co.jp/blog/creators/2019-10-25-105135/
+  onClickLinkedTextCopy2() {
+    const textNode = document.getElementById('linkedText')!;
+    const range = document.createRange();
+    range.selectNode(textNode);
+    // 選択範囲解除
+    getSelection()!.removeAllRanges();
+    // 範囲選択
+    getSelection()!.addRange(range);
+    // コピー実行
+    document.execCommand('copy');
+    // 選択範囲解除
+    getSelection()!.removeAllRanges();
+    window.alert('copied!');
+  }
 }
